@@ -3,7 +3,7 @@ import { sumar, restar } from './app';
 
 describe('Pruebas de Funciones Matemáticas con Vitest', () => {
   test('Debe sumar correctamente dos números', () => {
-    expect(sumar(5, 3)).toBe(9);
+    expect(sumar(5, 3)).toBe(8);
     expect(sumar(-1, 1)).toBe(0);
   });
 
