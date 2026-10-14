@@ -1,0 +1,19 @@
+{
+  "name": "practica-jenkins",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run --reporter=default --reporter=junit --outputFile=junit.xml"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  }
+}
