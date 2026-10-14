@@ -39,5 +39,15 @@ pipeline {
                 sh 'node dist/index.js &'
             }
         }
+
+        stage('Despliegue Local & Health Check') {
+            steps {
+                echo 'Iniciando servidor Express en localhost:3000...'
+                sh 'JENKINS_NODE_COOKIE=dontKillMe nohup node dist/index.js &'
+
+                echo 'Verificando que la API responda...'
+                sh 'curl -f http://localhost:3000 || exit 1'
+            }
+        }
     }
 }
