@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-    options {
-        ansiColor('xterm') // 🎨 Convierte los garabatos en colores reales
-    }
 
     tools {
         // Indica a Jenkins que use la herramienta configurada en Global Tools
