@@ -1,29 +1,33 @@
 pipeline {
     agent any
 
+    tools {
+        // Indica a Jenkins que use la herramienta configurada en Global Tools
+        nodejs 'node20'
+    }
+
     stages {
         stage('1. Preparar Entorno') {
             steps {
-                echo 'Instalando dependencias con npm...'
+                echo 'Instalando dependencias...'
                 sh 'npm ci'
             }
         }
 
         stage('2. Compilación TypeScript') {
             steps {
-                echo 'Compilando TypeScript a JavaScript...'
+                echo 'Compilando TypeScript...'
                 sh 'npm run build'
             }
         }
 
         stage('3. Pruebas Unitarias (Vitest)') {
             steps {
-                echo 'Ejecutando pruebas con Vitest...'
+                echo 'Ejecutando pruebas...'
                 sh 'npm test'
             }
             post {
                 always {
-                    // Publica el reporte de pruebas generado por Vitest en XML
                     junit 'junit.xml'
                 }
             }
@@ -31,18 +35,9 @@ pipeline {
 
         stage('4. Simulación de Despliegue') {
             steps {
-                echo 'Pruebas aprobadas. Iniciando aplicación...'
+                echo 'Iniciando servidor Express...'
                 sh 'node dist/index.js &'
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Pipeline completado con éxito.'
-        }
-        failure {
-            echo '❌ El pipeline falló en alguna etapa.'
         }
     }
 }
